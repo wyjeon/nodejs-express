@@ -9,6 +9,7 @@ var qs = require("querystring");
 var bodyParser = require("body-parser");
 var compression = require("compression");
 
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
 app.get("*", function (request, response, next) {
@@ -26,7 +27,10 @@ app.get("/", function (request, response) {
   var html = template.HTML(
     title,
     list,
-    `<h2>${title}</h2>${description}`,
+    `
+      <h2>${title}</h2>${description}
+      <img src="/images/hello.jpg" style="width:300px; display:block; margin-top:10px;">
+    `,
     `<a href="/create">create</a>`
   );
   response.send(html);
