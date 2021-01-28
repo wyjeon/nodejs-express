@@ -2,9 +2,10 @@ var express = require("express");
 var app = express();
 var port = 3000;
 var fs = require("fs");
-
 var bodyParser = require("body-parser");
 var compression = require("compression");
+var helmet = require("helmet");
+app.use(helmet());
 var indexRouter = require("./routes/index");
 var topicRouter = require("./routes/topic");
 
